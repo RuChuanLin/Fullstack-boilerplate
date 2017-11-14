@@ -28,4 +28,22 @@ heroku open
 ```
 
 ### Subsequent Deploys
--
+- commit專案
+- 用git部署專案
+```
+git push heroku master
+```
+- 開啟專案
+```
+heroku open
+```
+
+### Error handling
+
+- 印出log
+```
+heroku logs
+```
+- 查[錯誤代碼](https://devcenter.heroku.com/articles/error-codes)
+
+
