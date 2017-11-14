@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 // passport本身並沒有回傳值，他只是裝填一些Strategy，所以不需要指定成一個常數
+require('./models/User');
 require('./services/passport');
 
 mongoose.connect(keys.mongoURI);
