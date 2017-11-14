@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send({ hi: 'there' });
+  res.send({ hi: 'there', bye: 'buddy' });
 });
 
 // 指定環境埠號。部署時會某些server provider會動態指定埠號，因此必須要由process.env.PORT

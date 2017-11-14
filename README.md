@@ -14,12 +14,18 @@ heroku login
 ```
 heroku create
 ```
-- 用git部署專案(事先需要commit)
+- 增加heroku git remote
 ```
 heroku git:remote -a <專案名稱>
+```
+- 用git部署專案(事先需要commit)
+```
+git push heroku master
 ```
 - 開啟專案
 ```
 heroku open
 ```
 
+### Subsequent Deploys
+-
