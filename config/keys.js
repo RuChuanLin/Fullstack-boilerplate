@@ -1,16 +1,8 @@
-// 避免找不到屬性的key，把key和values分成兩個檔案。
-// .gitignore只忽略value的部份。
-// 確保github仍可以找到key的部份。
-// 新電腦 1. 同目錄新增 keys_values.js
-// 2. 複製 module.exports 整段
-// 3. 加入屬性
-const VALUES = require('./keys_value');
-
-const { googleClientID, googleClientSecret, mongoURI, cookieKey } = VALUES;
-
-module.exports = {
-  googleClientID,
-  googleClientSecret,
-  mongoURI,
-  cookieKey
-};
+// keys.js figure out what set of credentials to return
+if (process.env.NOVE_ENV === 'production') {
+  // we are in production - return the prod set of keys
+  module.exports = require('./prod');
+} else {
+  // we are in development - return the dev set of keys!!
+  module.exports = require('./dev');
+}
