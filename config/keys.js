@@ -6,10 +6,11 @@
 // 3. 加入屬性
 const VALUES = require('./keys_value');
 
-const { googleClientID, googleClientSecret, mongoURI } = VALUES;
+const { googleClientID, googleClientSecret, mongoURI, cookieKey } = VALUES;
 
 module.exports = {
   googleClientID,
   googleClientSecret,
-  mongoURI
+  mongoURI,
+  cookieKey
 };

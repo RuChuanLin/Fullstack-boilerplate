@@ -6,9 +6,16 @@ const keys = require('../config/keys');
 
 const User = mongoose.model('users');
 
+// 這裡的id不是googleID, 而是mongo產生的_id
 passport.serializeUser((user, done) => {
-  // 這裡的id不是googleID, 而是mongo產生的_id
   done(null, user.id);
+});
+
+// 自己產生的id(MONGODB _id)
+passport.deserializeUser((id, done) => {
+  User.findById(id).then(user => {
+    done(null, user);
+  });
 });
 
 // passport要"裝填"Strtegy，這裡以GoogleStrategy為例。

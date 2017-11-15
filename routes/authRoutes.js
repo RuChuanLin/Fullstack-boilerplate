@@ -15,4 +15,15 @@ module.exports = app => {
 
   // 當google認證並授權App後，回傳的URL
   app.get('/auth/google/callback', passport.authenticate('google'));
+
+  app.get('/api/logout', (req, res) => {
+    // passport提供的logout方法
+    req.logout();
+    res.send(req.user);
+  });
+
+  app.get('/api/current_user', (req, res) => {
+    res.send(req.user);
+    // res.send(req.session);
+  });
 };
