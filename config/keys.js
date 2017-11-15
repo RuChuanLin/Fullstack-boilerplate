@@ -4,10 +4,7 @@
 // 新電腦 1. 同目錄新增 keys_values.js
 // 2. 複製 module.exports 整段
 // 3. 加入屬性
-const VALUES = require('./keys_values');
-if(!VALUES){
-  throw new Error('123')
-}
+const VALUES = require('./keys_value');
 const { googleClientID, googleClientSecret, mongoURI } = VALUES;
 
 module.exports = {
