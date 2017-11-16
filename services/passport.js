@@ -29,19 +29,16 @@ passport.use(
       callbackURL: '/auth/google/callback',
       proxy: true
     },
-    (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
       // 這裡必須看使用者是否已註冊過，如果已註冊就不要重複註冊
-      User.findOne({ googleId: profile.id }).then(existingUser => {
-        if (existingUser) {
-          // 已註冊過
-          done(null, existingUser);
-        } else {
-          // 未註冊過
-          new User({ googleId: profile.id })
-            .save()
-            .then(user => done(null, user));
-        }
-      });
+      const existingUser = await User.findOne({ googleId: profile.id });
+      if (existingUser) {
+        // 已註冊過
+        return done(null, existingUser);
+      }
+      // 未註冊過
+      const user = await new User({ googleId: profile.id }).save();
+      done(null, user);
     }
   )
 );
