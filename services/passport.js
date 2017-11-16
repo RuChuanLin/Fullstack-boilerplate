@@ -19,13 +19,15 @@ passport.deserializeUser((id, done) => {
 });
 
 // passport要"裝填"Strtegy，這裡以GoogleStrategy為例。
-// 目前有3個options，前兩個為公鑰及私鑰，第三個是當google驗證成功後要回傳的URL
+// 目前的options，前兩個為公鑰及私鑰，第三個是當google驗證成功後要回傳的URL
+// 第四個proxy，設置google不阻擋來自proxy的請求(信任proxy)
 passport.use(
   new GoogleStrategy(
     {
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
-      callbackURL: '/auth/google/callback'
+      callbackURL: '/auth/google/callback',
+      proxy: true
     },
     (accessToken, refreshToken, profile, done) => {
       // 這裡必須看使用者是否已註冊過，如果已註冊就不要重複註冊
